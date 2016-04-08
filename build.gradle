@@ -1,0 +1,65 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.7
+
+group = 'com.hr'
+version = '0.1.0'
+
+repositories {
+    clear();
+    mavenLocal();
+    maven { url 'http://192.168.1.78:8081/nexus/content/groups/public/' };
+    mavenCentral();
+}
+
+project.ext {
+    jettyVersion = '9.3.4.RC0'
+    jerseyVersion = '2.17'
+    guiceVersion = '4.0'
+    jersey2GuiceVersion = '0.10'
+    hibernateVersion = '5.0.1.Final'
+    hibernateJpaVersion = '1.0.0.Final'
+    ojdbcVersion = '11.2.0.1.0'
+    jacksonVersion = '2.5.0'
+    guavaVersion = '19.0-rc1'
+
+    junitVersion = '4.12'
+
+}
+
+dependencies {
+
+    compile "org.eclipse.jetty:jetty-server:$jettyVersion"
+    compile "org.eclipse.jetty:jetty-servlet:$jettyVersion"
+
+
+    compile "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
+    compile "org.glassfish.jersey.core:jersey-common:$jerseyVersion"
+    compile "org.glassfish.jersey.core:jersey-server:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-servlet:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-servlet-core:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-jetty-http:$jerseyVersion"
+    compile "org.glassfish.jersey.containers:jersey-container-jetty-servlet:$jerseyVersion"
+    compile "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
+    compile "org.glassfish.jersey.media:jersey-media-multipart:$jerseyVersion"
+
+    compile "com.google.inject:guice:$guiceVersion"
+    compile "com.google.inject.extensions:guice-assistedinject:$guiceVersion"
+    compile "com.google.inject.extensions:guice-servlet:$guiceVersion"
+    compile "com.google.inject.extensions:guice-persist:$guiceVersion"
+    compile "com.google.inject.extensions:guice-throwingproviders:$guiceVersion"
+    compile "com.google.inject.extensions:guice-multibindings:$guiceVersion"
+
+    compile "com.squarespace.jersey2-guice:jersey2-guice:$jersey2GuiceVersion"
+
+
+    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpaVersion"
+
+    compile "com.google.guava:guava:$guavaVersion"
+    compile "com.oracle:ojdbc6:$ojdbcVersion"
+
+    testCompile "junit:junit:$junitVersion"
+}
